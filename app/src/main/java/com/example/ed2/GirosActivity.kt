@@ -7,15 +7,16 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 class GirosActivity : AppCompatActivity() , SensorEventListener {
 
-    private lateinit var tvValores : TextView
+    private lateinit var tvvalores : TextView
     private lateinit var tvestado : TextView
-
+    private lateinit var imagen : ImageView
     private lateinit var sensorManager: SensorManager
 
     // crear objeto parao ocupar el sensor de luz
@@ -30,7 +31,9 @@ class GirosActivity : AppCompatActivity() , SensorEventListener {
         setContentView(R.layout.activity_giros)
 
         tvestado = findViewById(R.id.tvestado)
-        tvValores = findViewById(R.id.tvvalores)
+        tvvalores = findViewById(R.id.tvvalores)
+        imagen = findViewById(R.id.img)
+        imagen.setImageResource(R.drawable.fondo3)
 
         //permitir el uso de los serivios de hardware del dispositivo
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
@@ -65,33 +68,39 @@ class GirosActivity : AppCompatActivity() , SensorEventListener {
 
 
 
+            tvvalores.text = "X: $x\nY: $y\nZ: $z"
+
             if (x >= 2) {
                 tvestado.text = "Giro fuerte en el eje X "
                 findViewById<View>(R.id.main).setBackgroundColor(Color.GREEN)
-
+                imagen.setImageResource(R.drawable.fondo)
 
             } else if (y >= 2) {
                 tvestado.text = "Giro fuerte en el eje Y 🐺"
+                imagen.setImageResource(R.drawable.fondo1)
                 findViewById<View>(R.id.main).setBackgroundColor(Color.YELLOW)
                 findViewById<TextView>(R.id.tvtitulo).setTextColor(Color.YELLOW)
-                tvValores.setTextColor(Color.YELLOW)
-                tvestado.setTextColor(Color.YELLOW)
+                tvvalores.setTextColor(Color.BLACK)
+                tvestado.setTextColor(Color.BLACK)
+
 
 
             } else if (z >= 2) {
                 tvestado.text = "Giro fuerte en el eje Z 🤑"
-                findViewById<View>(R.id.main).setBackgroundColor(Color.BLACK)
-                findViewById<TextView>(R.id.tvtitulo).setTextColor(Color.WHITE)
-                tvValores.setTextColor(Color.WHITE)
-                tvestado.setTextColor(Color.WHITE)
+                imagen.setImageResource(R.drawable.fondo2)
+                findViewById<View>(R.id.main).setBackgroundColor(Color.BLUE)
+                findViewById<TextView>(R.id.tvtitulo).setTextColor(Color.BLUE)
+                tvvalores.setTextColor(Color.BLACK)
+                tvestado.setTextColor(Color.BLACK)
 
 
             } else {
                 tvestado.text = "Ningun movimiento detectado :V"
-                findViewById<View>(R.id.main).setBackgroundColor(Color.BLACK)
+                imagen.setImageResource(R.drawable.fondo3)
+                findViewById<View>(R.id.main).setBackgroundColor(Color.WHITE)
                 findViewById<TextView>(R.id.tvtitulo).setTextColor(Color.WHITE)
-                tvValores.setTextColor(Color.WHITE)
-                tvestado.setTextColor(Color.WHITE)
+                tvvalores.setTextColor(Color.BLACK)
+                tvestado.setTextColor(Color.BLACK)
 
             }
         }
@@ -122,5 +131,6 @@ class GirosActivity : AppCompatActivity() , SensorEventListener {
 
         }
     }
+
 }
 
