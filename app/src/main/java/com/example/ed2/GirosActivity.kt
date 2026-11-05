@@ -27,7 +27,7 @@ class GirosActivity : AppCompatActivity() , SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_giros)
 
         tvestado = findViewById(R.id.tvestado)
         tvValores = findViewById(R.id.tvvalores)
